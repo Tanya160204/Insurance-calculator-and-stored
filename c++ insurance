@@ -1,0 +1,222 @@
+#include <iostream>
+#include<fstream>
+using namespace std;
+class lifei
+{
+    public:
+    int age;
+    char sm[10];
+	char name[10];
+	char name1[10];
+	char med[100];
+	char op[12];
+
+       void display(){
+       		ifstream ifile;
+    		ifile.open("file.txt",ios::in);
+           	cout<<"You have choosen life insurance:"<<endl;
+           	ifile.close();
+       }
+       inline void info(){
+       		ofstream ifile;
+    		ifile.open("file.txt",ios::in);
+           cout<<"Name of the Insurer:"<<endl;
+           cin >> name;
+           ifile <<name;
+           cout<<"enter age:"<<endl;
+           cin >> age;
+           ifile<<age;
+           cout<<"Any medical history (past and current):"<<endl;
+           cin >> med;
+           ifile<<med;
+           cout<<" Any smoking or drinking habits:"<<endl;
+           cin >> sm;
+           ifile<<sm;
+           cout<<"Enter name of the person in Nomniee:"<<endl;
+           cin >> name1;
+           ifile<<name1;
+           cout<<"enter you occupation:"<<endl;
+           cin >> op;
+           ifile<<op;
+           ifile.close();
+       }
+
+};
+class whole:public lifei{
+    public:
+       double am;
+    
+       void dis(){
+       	ofstream ifile;
+       ifile.open("file.txt",ios::in);
+       cout<<"Amount to the paid each month:"<<endl;
+       cin>>am;
+       ifile<<am;
+       cout<<"This Insurance will be vaild till 20 years"<<endl;
+       cout<<"Total Amount after the end of validation of Insurance will be"<<20*am<<endl;
+       ifile.close();
+       }
+         
+};
+class endo:public lifei{
+    public:
+       double y,am,sum;
+       
+       void dis(){
+       	ofstream ifile;
+       ifile.open("file.txt",ios::in);
+       cout<<"enter number of years you want to use this Insurance:"<<endl;
+       cin>>y;
+       ifile<<y;
+       cout<<"enter amount to be paid each year:"<<endl;
+       cin>>am;
+       ifile<<am;
+       ifile.close();
+       }
+       endo(){
+           sum=am*y;
+           
+       }
+       ~endo(){}
+
+};
+class joint:public lifei{
+    public:
+       char name2[10];
+	   char t[5];
+       double am;
+       
+       void disp(){
+       	ofstream ifile;
+       ifile.open("file.txt",ios::in);
+       cout<<"enter name of the second person:"<<endl;
+       cin>>name2;
+       ifile<<name2;
+       cout<<"enter payment time : Quaterly/yearly/mothly:"<<endl;
+       cin>>t;
+       ifile<<t;
+       cout<<"enter amount to be paid each "<<t<<":"<<endl;
+       cin>>am;
+       ifile<<am;
+       ifile.close();
+       }
+         
+};
+class homei{
+    public:
+       char ad[100],t[10];
+       int ag;
+       double am;
+       float siz;
+       
+       void display(){
+       	ofstream ifile;
+       ifile.open("file.txt",ios::in);
+       cout<<"Enter address where home is located:"<<endl;
+       cin>>ad;
+       ifile<<ad;
+       cout<<"Size of the house:"<<endl;
+       cin>>siz;
+       ifile<<siz;
+       cout<<"age of the house:"<<endl;
+       cin>>ag;
+       ifile<<ag;
+       cout<<"enter payment time : Quaterly/yearly/mothly:"<<endl;
+       cin>>t;
+       ifile<<t;
+       cout<<"enter amount to be paid each "<<t<<":"<<endl;
+       cin>>am;
+       ifile<<am;
+       ifile.close();
+       }
+         
+};
+class healthi{
+    public:
+       double am;
+       char gen[10];
+       
+       void display(){
+       	ofstream ifile;
+       ifile.open("file.txt",ios::in);
+       cout<<"It is renewed every year"<<endl;
+       cout<<"Available in form of Mediclaim policy in India; this is availed after treatment is done"<<endl;
+       cout<<"enter amount to be paid each year:"<<endl;
+       cin>>am;
+       ifile<<am;
+       cout<<"enter you gender:"<<endl;
+       cin>>gen;
+       ifile<<gen;
+       ifile.close();
+       }
+         
+};
+class motori{
+    public:
+        char mo[50],co[10];
+        double pr;
+        int ag;
+        
+        void display(){
+        	ofstream ifile;
+        ifile.open("file.txt",ios::in);
+        cout<<"Enter model of the Vehicle:"<<endl;
+        cin>>mo;
+        ifile<<mo;
+        cout<<"Enter the price of the vehicle:"<<endl;
+        cin>>pr;
+        ifile<<pr;
+        cout<<"Age of the vehicle:"<<endl;
+        cin>>ag;
+        ifile<<ag;
+        cout<<"Enter type of coverage plan:"<<endl;
+        cin>>co;
+        ifile<<co;
+        ifile.close();
+        }
+          
+};
+int main()
+{
+    int n,n1;
+    lifei li;
+    whole w;
+    endo e;
+    joint j;
+    homei h;
+    healthi he;
+    motori mo;
+    fstream ifile;
+    ifile.open("file.txt",ios::in);
+    cout<<"Choose which Insurance you will take : \n 1.Life Insurance \n 2.health Insurance\n3.motor Insurance\n4.house Insurance"<<endl;
+    cin>>n;
+    if(n==1){
+        li.display();
+        li.info();
+        cout<<"Choose which life Insurance:\n1.whole life policy\n2.endowment life Insurance\n3.joint life policy"<<endl;
+        cin>>n1;
+        if(n1==1){
+            w.dis();
+        }
+        else if(n1==2){
+            e.dis();
+            cout<<"The amount after the termination or after death the company will pay:"<<e.sum<<"amount"<<endl;
+        }
+        else if(n1==3){
+            j.disp();
+        }
+        else{cout<<"invalid choice"<<endl;}
+    }
+    else if(n==2){
+        he.display();
+    }
+    else if(n==3){
+        mo.display();
+    }
+    else if(n==4){
+        h.display();
+    }
+    else{cout<<"invalid choice"<<endl;}
+    ifile.close();
+    return 0;
+}
